@@ -43,6 +43,7 @@ public class OrderItem implements Serializable{
 		id.setOrder(order);
 	}
 	
+	
 	public Product getProduct() {
 		return id.getProduct();
 	}
@@ -102,11 +103,5 @@ public class OrderItem implements Serializable{
 		return true;
 	}
 
-
-
-	public double subTotal() {
-		
-		return 2.0;
-	}
 
 }
