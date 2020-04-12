@@ -45,7 +45,7 @@ public class UserResource {
 				.buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(obj);
 		
-		/** DESCRIÇÃO
+		/** DESCRIÇÃO DO MÉTODO DESCRITO ACIMA
 		 * 1 - Resposta de entidade usuário recebe como parâmetro um Objeto em jSON
 		 * 2 - A referencia "obj" recebe a referencia "service" chamando o método para inserir o próprio JSON
 		 * 3 - Chamamos um tipo URI que vai receber um gerador de componente uri da requisição atual do caminho/chave id
