@@ -21,6 +21,10 @@ import com.educandoweb.course.repositories.OrderRepository;
 import com.educandoweb.course.repositories.ProductRepository;
 import com.educandoweb.course.repositories.UserRepository;
 
+
+/*Essa classe é responsável por declarar classes com função de repositórios que herdsm os métodos do JpaRepository
+  e usamos ela para injetar/lançar instancias no banco de dados H2 (banco interno de testes nativo da nossa aplicação)
+*/
 @Configuration
 @Profile("test")
 public class TestConfig implements CommandLineRunner{
