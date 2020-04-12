@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,13 +39,20 @@ public class UserResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<User> insert(@RequestBody User obj) { //resposta de entidade usuário recebe como parâmetro um Objeto em jSON
-		obj = service.insert(obj); //a referencia "obj" recebe a referencia "service" chamando o método para inserir o próprio JSON
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}") //chamamos um tipo URI que vai receber um gerador de componente uri da requisição atual do caminho/chave id
-				.buildAndExpand(obj.getId()).toUri(); //que vai construir e expandir o id do objeto para o formato URI
-		return ResponseEntity.created(uri).body(obj); //vai retornar uma resposta de entidade com o código de request 201(criado) se referindo ao corpo do objeto obj
-	
-	
+	public ResponseEntity<User> insert(@RequestBody User obj) { 
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}") 
+				.buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).body(obj);
+		
+		/** DESCRIÇÃO
+		 * 1 - Resposta de entidade usuário recebe como parâmetro um Objeto em jSON
+		 * 2 - A referencia "obj" recebe a referencia "service" chamando o método para inserir o próprio JSON
+		 * 3 - Chamamos um tipo URI que vai receber um gerador de componente uri da requisição atual do caminho/chave id
+		 * 4 - Que vai construir e expandir o id do objeto para o formato URI
+		 * 5 - Vai retornar uma resposta de entidade com o código de request 201(criado) se referindo ao corpo do objeto obj
+		 * 
+		 */
 	}
 	
 	@DeleteMapping(value = "/{id}")
@@ -52,5 +60,11 @@ public class UserResource {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj){
+		obj = service.update(id, obj);
+		return ResponseEntity.ok().body(obj);
+	}  
 	
 }
